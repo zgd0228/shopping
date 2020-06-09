@@ -1,0 +1,38 @@
+{% extends 'admin/menu.html' %}
+    {% block table %}
+        <div class="btn-group" style="margin: 5px 0">
+        <a href="{{ url_for('change.user_add') }}" class="btn btn-default">
+            <i class="fa fa-plus-square" aria-hidden="true"></i>
+            添加用户
+        </a>
+    </div>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <td>ID</td>
+            <td>姓名</td>
+            <td>邮箱</td>
+            <td>电话</td>
+            <td>选项</td>
+        </tr>
+        </thead>
+        <tbody>
+
+        {% for user in users %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ user.name }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.telephone }}</td>
+                <td>
+                    <a style="color: #333333;" href="{{ url_for('change.user_edit',id=user.id) }}">
+                        <i class="fa fa-edit" aria-hidden="true"></i></a>
+                    |
+                    <a style="color: #d9534f;" href="{{ url_for('change.user_deleter',id=user.id) }}"><i class="fa fa-trash-o"></i></a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'admin/menu.html' %}
+    {% block table %}
+        <div class="btn-group" style="margin: 5px 0">
+        <a href="{{ url_for('change.goods_add',bid=bid) }}" class="btn btn-default">
+            <i class="fa fa-plus-square" aria-hidden="true"></i>
+            添加商品
+        </a>
+    </div>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <td>ID</td>
+            <td>商品名称</td>
+            <td>商品价格</td>
+            <td>添加日期</td>
+            <td>选项</td>
+
+        </tr>
+        </thead>
+        <tbody>
+
+        {% for foo in goods_list %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ foo.title }}</td>
+                <td>{{ foo.price }}</td>
+                <td>{{ foo.add_time }}</td>
+                <td>
+                    <a style="color: #333333;" href="{{ url_for('change.goods_edit',id=foo.id) }}">
+                        <i class="fa fa-edit" aria-hidden="true"></i></a>
+                    |
+                    <a style="color: #d9534f;" href="{{ url_for('change.goods_delete',id=foo.id) }}"><i class="fa fa-trash-o"></i></a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {% endblock %}

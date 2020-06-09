@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block menu %}
+    <div class="menu">
+        <div class="menu_display">
+            <div class="items">
+            {% for menu in menu_list %}
+                <div class="title">
+                    <span><i class="fa {{ menu.icon }}"></i></span> {{ menu.title }}
+                </div>
+                <div class="body2 hide">
+                    {% for foo in menu.permission %}
+                        <a href="{{ foo.url }}" >{{ foo.title }}</a>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+<script>
+    (function (jq) {
+    jq('.items.title').click(function () {
+        $(this).next().toggleClass('active');
+    });
+})(jQuery);
+</script>
+
+
+
